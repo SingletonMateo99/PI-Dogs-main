@@ -4,7 +4,7 @@ const {v4: uuidv4} = require('uuid');
 const axios = require('axios');
 
 const { Dog, Temperament } = require('../db.js');
-const e = require('express');
+
 
 router.post('/', async (req,res,next)=>{
     const { name,weight, height, life_span, temperament} = req.body;
@@ -103,4 +103,35 @@ router.get('/', async (req,res,next)=>{
 
 })
 
+router.get('/:id', async (req,res,next)=>{
+    const {id} = req.params
+    try{
+    if(id.length > 6){
+        const dbSearch =  await Dog.findByPk(id,{
+            include:{
+                model:Temperament
+            }
+        } )
+        res.json(dbSearch)
+    }
+
+    else{
+        const {data} = await axios.get(`https://api.thedogapi.com/v1/breeds/${id}`)
+        const breed = {
+            id: data.id,
+            name: data.name,
+            image: 'https://cdn2.thedogapi.com/images/' + data.reference_image_id + '.jpg',
+            weight: data.weight.metric,
+            height: data.height.metric,
+            life_span: data.life_span,
+            temperament:data.temperament,}        
+
+            res.json(breed)
+    }
+    }catch(error){
+        next(error)
+    }
+
+
+})
 module.exports = router;

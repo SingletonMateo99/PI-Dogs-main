@@ -1,0 +1,32 @@
+.divBig{
+    background-image: url("https://fondosmil.com/fondo/20087.jpg");
+    position: fixed;
+    min-width: 100%;
+    min-height:100%;
+    background-size: cover;
+    background-position: center;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    border-style: solid;
+    width: 1850px;
+    height: 900px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
+    
+    
+}
+.cards{
+        display: flex;
+        flex-direction: row;
+        
+
+}

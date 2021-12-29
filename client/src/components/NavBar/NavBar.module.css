@@ -1,0 +1,12 @@
+.tittle{
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    border-style: solid
+    ;
+}
+.divSelect{
+    flex-direction: row;
+    border-style: solid;
+    
+}
