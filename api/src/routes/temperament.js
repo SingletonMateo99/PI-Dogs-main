@@ -4,27 +4,29 @@ const axios = require('axios');
 const { Dog, Temperament } = require('../db.js');
 
 router.get('/', async (req,res,next)=>{
-    const {data} = await axios.get('https://api.thedogapi.com/v1/breeds')
-    
-    const mapTemperament = data.map((e)=>{
-        return e.temperament
-    })
-    const mapSplit =  mapTemperament.map((e)=>{
-        return e && e.split(', ')
-    })
-    const order = mapSplit.flat().sort()
+    const { data } = await axios.get(`https://api.thedogapi.com/v1/breeds`);
 
-    const dataArray = new Set(order)
+	const allBreed = data.map((b) => { // mapeo todas las razas y me devuelve los temperamentos
+		return b.temperament;
+	});
 
-    let result = [...dataArray]
-    const temp = result.map((c) => {
+	const allJoin = allBreed.map((e) => {  // mapeo todos los temperamentos y me los separa por el split con una coma
+		return e && e.split(', ');
+	});
+
+	const order = allJoin.flat().sort(); //flat concatena todos los arreglos en uno solo , metodo de ordemiento 
+
+	const dataArray = new Set(order); // 
+	let result = [...dataArray];
+
+	const temp = result.map((c) => {
 		return {
 			name: c || 'Could not get name',
 		};
 	});
 
-    const temperamentDB = await Temperament.bulkCreate(temp); 
-	
+	const temperamentDB = await Temperament.bulkCreate(temp); // creo en la base de datos
+	// console.log(temperamentDB);
 	res.send(temperamentDB);
  })
 
