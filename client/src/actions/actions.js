@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export function getAllBreeds(){
     return  function(dispatch){
-        return axios.get('http://localhost:3001/breeds')
+        return axios.get('http://localhost:3001/dogs')
             .then((response) => {
                 dispatch({
                 type:'GET_BREEDS',
@@ -15,7 +15,7 @@ export function getAllBreeds(){
 
     export function getAllById(id){
         return  function(dispatch){
-            return axios.get(`http://localhost:3001/breeds/${id}`)
+            return axios.get(`http://localhost:3001/dogs/${id}`)
             .then((response)=>{
                 dispatch({
                     type:'GET_ID',
@@ -29,7 +29,7 @@ export function getAllBreeds(){
 
 export function getBreedsByName(name){
     return function(dispatch){
-        return axios.get(`http://localhost:3001/breeds?name=${name}`)
+        return axios.get(`http://localhost:3001/dogs?name=${name}`)
         .then((response) => {
             dispatch({
                 type:'GET_BYNAME',

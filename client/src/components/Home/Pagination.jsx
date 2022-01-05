@@ -3,6 +3,9 @@ import axios from 'axios';
 import s from './Pagination.module.css'
 import { Link } from 'react-router-dom';
 import Pages from './Pages';
+import {getAllBreeds} from '../../actions/actions';
+import { connect } from 'react-redux';
+
 
 const renderCard=(card)=> {
     
@@ -40,7 +43,7 @@ const renderCard=(card)=> {
 
   
   
-function Pagination() {
+function Pagination({getAllBreeds, breeds}) {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -50,8 +53,7 @@ function Pagination() {
         //hacemos otra funcion porque no puedo ponerle async al useEffect
         const fetchPosts = async () => {
         setLoading(true);
-        const res = await axios.get('http://localhost:3001/dogs')
-        setPosts(res.data);
+        await getAllBreeds()
         setLoading(false)
     }
     fetchPosts();
@@ -60,7 +62,7 @@ function Pagination() {
     //Get current posts
     const indexOfLastPost= currentPage * postsPerPage;
     const indexOfFirstPost= indexOfLastPost - postsPerPage;
-    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
+    const currentPosts = breeds.slice(indexOfFirstPost, indexOfLastPost)
  console.log(posts)
 
     //change page
@@ -69,11 +71,27 @@ function Pagination() {
           <div className={s.cardContainer}>
               {renderCard(currentPosts)}
               <div className={s.pages}>
-              <Pages postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
+              <Pages postsPerPage={postsPerPage} totalPosts={breeds.length} paginate={paginate}/>
               </div>
           </div>
       )
   }
+  function mapStateToProps(state) {
+    return {
+        breeds: state.breeds,
+        filteredBreeds: state.filteredBreeds,
+        
+    };
+}
 
-  export default Pagination
+function mapDispatchToProps(dispatch) {
+    return {
+      getAllBreeds: breeds => dispatch(getAllBreeds(breeds)),
+      
+    };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps) (Pagination);
+
   
