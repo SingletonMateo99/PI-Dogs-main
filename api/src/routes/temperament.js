@@ -4,6 +4,8 @@ const axios = require('axios');
 const { Dog, Temperament } = require('../db.js');
 
 router.get('/', async (req,res,next)=>{
+	const temps = await Temperament.findAll();
+	if(temps.length === 0){
     const { data } = await axios.get(`https://api.thedogapi.com/v1/breeds`);
 
 	const allBreed = data.map((b) => { // mapeo todas las razas y me devuelve los temperamentos
@@ -27,7 +29,11 @@ router.get('/', async (req,res,next)=>{
 
 	const temperamentDB = await Temperament.bulkCreate(temp); // creo en la base de datos
 	// console.log(temperamentDB);
-	res.send(temperamentDB);
+	res.send(temperamentDB);}
+	else{
+		res.send(temps)
+	}
+	
  })
 
 module.exports = router;

@@ -1,29 +1,31 @@
-import React from 'react'
+import React, { useState } from "react";
 import s from './NavBar.module.css'
 import { Link } from 'react-router-dom'
+import { connect } from "react-redux";
+import SearchBar from "./SearchBar";
+import Filter from "./Filter";
 
-function NavBar() {
+function NavBar(props) {
+
+
+
     return (
-        <div>
-            <h2 className={s.tittle}>Breed App</h2>
-            <div>
-                <Link to='/home'><button>Home</button></Link>
-                <Link to='/create'><button>Create New Breed</button></Link>
-                <div className={s.divSelect}>
-                <input type="text" placeholder='Insert breed' />
-                
-                    <select >
-                        <option>A-Z</option>
-                        <option>Z-A</option>
-                        <option>Weight</option>
-                    </select>
-                    <select >
-                        <option>Temperament</option>
-                        <option>Original Breeds</option>
-                        <option>New Breeds</option>
-                    </select>
-                </div>
-                
+        <div className={s.fixed}>
+            <div className={s.containerTittle}>
+
+                <h2 className={s.tittle}>CUTE DOGGYS FINDER</h2>
+
+            </div>
+            <div className={s.divSelect}>
+                <SearchBar />
+                <Filter />
+
+                <Link to='/create'>
+                    <button className={s.button}><span className={s.span}>Create</span></button>
+                </Link>
+
+
+
             </div>
 
         </div>
@@ -31,4 +33,5 @@ function NavBar() {
     )
 }
 
-export default NavBar
+
+export default NavBar;

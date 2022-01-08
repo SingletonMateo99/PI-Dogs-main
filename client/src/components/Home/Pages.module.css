@@ -1,7 +1,20 @@
+
 .pagination{
     display: flex;
-    justify-content: space-between;
+    list-style: none;
+    text-decoration: none;
     
-cursor: default;
-
 }
+.nums{
+    margin-left: 70px;
+    text-decoration: none;
+    align-items: stretch;
+    
+}
+.vincules{
+    text-decoration: none;
+    color:#4673B6;
+    font-weight: bold;
+    text-shadow: -1px -1px 1px #000, 1px 1px 1px #000, -1px 1px 1px #000, 1px -1px 1px #000;
+}
+

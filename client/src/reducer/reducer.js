@@ -6,6 +6,7 @@ import {GET_BREEDS, GET_ID, GET_BYNAME, GET_TEMPERAMENT, ORDER_ASC,
         temperament: [],
         breedsDetail :[],
         filteredBreeds: [],
+        prueba:[],
         
         }
 
@@ -14,6 +15,7 @@ export default function reducer(state = initialState, action) {
     case GET_BREEDS: return {
         ...state,
         breeds: action.payload,
+        prueba: action.payload,
         //filteredBreeds:action.payload no va por q resetea 
         
     }
@@ -51,18 +53,18 @@ export default function reducer(state = initialState, action) {
 case ORDER_WEIGHTMAX: return{
     ...state,
     breeds: state.breeds
-    .filter((b) => b.weight !== null)
+    .filter((b) => b.weight !== null && !b.weight.includes('NaN'))
     .sort((a, b) => (a.weight > b.weight ? 1 : -1)),
-    filteredBreeds: state.filteredBreeds.filter((b) => b.weight !== null)
+    filteredBreeds: state.filteredBreeds.filter((b) => b.weight !== null && !b.weight.includes('NaN'))
     .sort((a, b) => (a.weight > b.weight ? 1 : -1)),
 }
 
 case ORDER_WEIGHTMIN: return{
     ...state,
     breeds: state.breeds
-    .filter((b) => b.weight !== null)
+    .filter((b) => b.weight !== null && !b.weight.includes('NaN'))
     .sort((a, b) => (a.weight < b.weight ? 1 : -1)),
-    filteredBreeds: state.filteredBreeds.filter((b) => b.weight !== null)
+    filteredBreeds: state.filteredBreeds.filter((b) => b.weight !== null && !b.weight.includes('NaN'))
     .sort((a, b) => (a.weight < b.weight ? 1 : -1)),
 }
 
@@ -91,19 +93,19 @@ case ORDER_WEIGHTMIN: return{
 }
     case DB: return {
 		...state,
-		breeds: state.breeds.filter((b) => b.db ),
+		breeds: state.prueba.filter((b) => b.db ),
         filteredBreeds: state.filteredBreeds.filter((b) => b.db),
         
 };
 	case API: return {
 		...state,
-		breeds: state.breeds.filter((b) => !b.db),
+		breeds: state.prueba.filter((b) => !b.db),
         filteredBreeds:state.filteredBreeds.filter((b) => !b.db),
 };
     case ALL: 
             return {
                 ...state,
-                breeds: state.breeds,
+                breeds: state.prueba,
                 filteredBreeds:state.filteredBreeds
             }
   

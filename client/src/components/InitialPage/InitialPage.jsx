@@ -6,11 +6,11 @@ export default function InitialPage() {
     return (
         <div className={s.divHome}>
 
-
             <div className={s.divButton}>
-                <h1 className={s.titte}>Welcome to the dogs App</h1>
+                <h1 className={s.titte}>Welcome to the "CUTE DOGGYS FINDER"</h1>
+
                 <Link to='/home'>
-                <button className={s.buttonHome}>Home</button>
+                    <button className={s.buttonHome}>Home</button>
                 </Link>
             </div>
         </div>

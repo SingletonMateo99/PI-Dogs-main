@@ -1,106 +1,120 @@
 import axios from 'axios';
 
-export function getAllBreeds(){
-    return  function(dispatch){
+//BUSCO TODAS LAS RAZAS RECIBIDAS POR EL BACK Y LAS ALMACENO EN EL PAYLOAD
+export function getAllBreeds() {
+    return function (dispatch) {
         return axios.get('http://localhost:3001/dogs')
             .then((response) => {
                 dispatch({
-                type:'GET_BREEDS',
-                payload: response.data,
-            })
-        })
-        }
-    }
-
-
-    export function getAllById(id){
-        return  function(dispatch){
-            return axios.get(`http://localhost:3001/dogs/${id}`)
-            .then((response)=>{
-                dispatch({
-                    type:'GET_ID',
+                    type: 'GET_BREEDS',
                     payload: response.data,
                 })
             })
-            }
-        };
+    }
+}
+
+//BUSCO LA RAZA POR ID Y LA GUARDO EN EL PAYLOAD
+export function getAllById(id) {
+    return function (dispatch) {
+        return axios.get(`http://localhost:3001/dogs/${id}`)
+            .then((response) => {
+                dispatch({
+                    type: 'GET_ID',
+                    payload: response.data,
+                })
+            })
+    }
+};
 
 
-
-export function getBreedsByName(name){
-    return function(dispatch){
+//BUSCO LA RAZA POR NAME Y LA GUARDO EN EL PAYLOAD
+export function getBreedsByName(name) {
+    return function (dispatch) {
         return axios.get(`http://localhost:3001/dogs?name=${name}`)
-        .then((response) => {
-            dispatch({
-                type:'GET_BYNAME',
-                payload: response.data,
+            .then((response) => {
+                dispatch({
+                    type: 'GET_BYNAME',
+                    payload: response.data,
+                })
             })
-        })
     }
 };
 
-
-export function getTemperament(){
-    return function(dispatch){
+//BUSCO TODOS LOS TEMPERAMENTOS Y LOS ALMACENO EN EL PAYLOAD
+export function getTemperament() {
+    return function (dispatch) {
         return axios.get('http://localhost:3001/temperament')
-        .then((response) => {
-            dispatch({
-                type:'GET_TEMPERAMENT',
-                payload: response.data,
+            .then((response) => {
+                dispatch({
+                    type: 'GET_TEMPERAMENT',
+                    payload: response.data,
+                })
             })
-        })
     }
 };
 
 
-//FILTROS!!
+//FILTROS
+//SETEO DISTINTAS POSIBILIDADES PARA EL SELECT DEL FRONT
 export function orderAlph(value) {
 
     if (value === 'ORDER_ASC') {
-		return {
-			type: 'ORDER_ASC',
-		};
-	} else {
-		return {
-			type: 'ORDER_DESC',
-		};
-	}
-}
-
-export function orderWeight(value) {
-
-    if (value === 'ORDER_WEIGHTMAX') {
-		return {
-			type: 'ORDER_WEIGHTMAX',
-		};
-	} else {
-		return {
-			type: 'ORDER_WEIGHTMIN',
-		};
-	}
-}
-
-export function tempFilter(payload){
-    return{
-    type: 'TEMP_FILTER',
-    payload: payload,
+        return {
+            type: 'ORDER_ASC',
+        };
+    } else {
+        return {
+            type: 'ORDER_DESC',
+        };
     }
 }
 
+//SETEO DISTINTAS POSIBILIDADES PARA EL SELECT DEL FRONT
+export function orderWeight(value) {
+
+    if (value === 'ORDER_WEIGHTMAX') {
+        return {
+            type: 'ORDER_WEIGHTMAX',
+        };
+    } else {
+        return {
+            type: 'ORDER_WEIGHTMIN',
+        };
+    }
+}
+
+export function tempFilter(payload) {
+    return {
+        type: 'TEMP_FILTER',
+        payload: payload,
+    }
+}
+
+//SETEO DISTINTAS POSIBILIDADES PARA EL SELECT DEL FRONT
 export function getCreateBreedsFromDb(value) {
-	if (value === 'DB') {
-		return {
-			type: 'DB',
-		};
-	} else if (value === 'API'){
-		return {
-			type: 'API',
-		};
-	}else if (value === 'ALL') {
-		return {
+    if (value === 'DB') {
+        return {
+            type: 'DB',
+        };
+    } else if (value === 'API') {
+        return {
+            type: 'API',
+        };
+    } else if (value === 'ALL') {
+        return {
             type: 'ALL'
         }
-	}
+    }
+}
+
+//REALIZO EL POST PARA PODER CREAR UNA RAZA
+export function createBreed(value) {
+    fetch('http://localhost:3001/dogs',
+        {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(value),
+        })
 }
 
 
@@ -116,5 +130,5 @@ export const ORDER_WEIGHTMAX = 'ORDER_WEIGHTMAX';
 export const ORDER_WEIGHTMIN = 'ORDER_WEIGHTMIN';
 export const TEMP_FILTER = 'TEMP_FILTER';
 export const DB = 'DB';
-export const API= 'API';
-export const ALL= 'ALL';
+export const API = 'API';
+export const ALL = 'ALL';

@@ -1,5 +1,4 @@
 .global{
-    background-image: url("https://img.buzzfeed.com/buzzfeed-static/static/2020-10/6/16/campaign_images/9232fa5697f6/solo-alguien-que-realmente-ama-a-los-perritos-va--2-9794-1602001787-17_dblbig.jpg?resize=1200:*");
     position:fixed;
     min-width: 100%;
     min-height:100%;
@@ -7,6 +6,21 @@
     background-position:center;
     top: 0;
     left: 0;
+    font-family: 'Fjalla One', sans-serif;
+
+}
+.divGlobal{
+    display: flex;
+    justify-content:space-evenly;
+}
+.divGlobal2{
+    display: flex;
+    justify-content: initial;
+}
+.tittle{
+    font-size: 35px;
+text-decoration:underline;
+color: #4673B6;
 }
 .container{
     height: 800px;
@@ -22,13 +36,172 @@
 .inputs{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    
+    font-size: 19px;
+    
+    
 
 }
 .image{
-    height: 800px;    
+    height: 800px;   
+    
+}
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #4673B6;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    right: 0;
+  }
+  
+  .span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover span {
+    padding-left: 25px;
+  }
+  
+  .button:hover span:after {
+    opacity: 1;
+    left: 0;
+  }
+
+    
+.textInput{
+    width: 90%;
+  height: 30px;
+  border-radius: 4px;
+  position: relative;
+  background-color: rgba(255,255,255,0.3);
+  transition: 0.3s all;
+}
+.list{
+    display: flex;
+    
 }
 
+.button2 {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #4673B6;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 19px;
+    padding: 10px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    right: 0;
+    height: 50px;
     
+  }
+  
+  .span2 {
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .span2:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: -20px;
+    transition: 0.5s;
+  }
+  
+  .button2:hover span {
+    padding-left: 25px;
+  }
+  
+  .button2:hover span:after {
+    opacity: 1;
+    left: 0;
+  }
+ .button1{
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #4673B6;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    justify-self: center;
+    font-size: 19px;
+    padding: 10px;
+    width: 500px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    right: 0;
+    height: 50px;
+ }
+ .span1 {
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .span1:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: -20px;
+    transition: 0.5s;
+  }
+  
+  .button1:hover span {
+    padding-left: 25px;
+  }
+  
+  .button1:hover span:after {
+    opacity: 1;
+    left: 0;
+  }
 
-    
+  .button1:disabled{
+    background-color: brown ;
+  }
+  
+  .select{
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #4673B6;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 12px;
+    padding: 10px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    right: 0;
+    height: 40px;
+  }
