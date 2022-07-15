@@ -3,7 +3,7 @@ import axios from 'axios';
 //BUSCO TODAS LAS RAZAS RECIBIDAS POR EL BACK Y LAS ALMACENO EN EL PAYLOAD
 export function getAllBreeds() {
     return function (dispatch) {
-        return axios.get('http://localhost:3001/dogs')
+        return axios.get('https://doggys-finder-backend-production.up.railway.app/dogs')
             .then((response) => {
                 dispatch({
                     type: 'GET_BREEDS',
@@ -16,7 +16,7 @@ export function getAllBreeds() {
 //BUSCO LA RAZA POR ID Y LA GUARDO EN EL PAYLOAD
 export function getAllById(id) {
     return function (dispatch) {
-        return axios.get(`http://localhost:3001/dogs/${id}`)
+        return axios.get(`https://doggys-finder-backend-production.up.railway.app/dogs/${id}`)
             .then((response) => {
                 dispatch({
                     type: 'GET_ID',
@@ -30,7 +30,7 @@ export function getAllById(id) {
 //BUSCO LA RAZA POR NAME Y LA GUARDO EN EL PAYLOAD
 export function getBreedsByName(name) {
     return function (dispatch) {
-        return axios.get(`http://localhost:3001/dogs?name=${name}`)
+        return axios.get(`https://doggys-finder-backend-production.up.railway.app/dogs?name=${name}`)
             .then((response) => {
                 dispatch({
                     type: 'GET_BYNAME',
@@ -43,7 +43,7 @@ export function getBreedsByName(name) {
 //BUSCO TODOS LOS TEMPERAMENTOS Y LOS ALMACENO EN EL PAYLOAD
 export function getTemperament() {
     return function (dispatch) {
-        return axios.get('http://localhost:3001/temperament')
+        return axios.get('https://doggys-finder-backend-production.up.railway.app/temperament')
             .then((response) => {
                 dispatch({
                     type: 'GET_TEMPERAMENT',
@@ -109,7 +109,7 @@ export function getCreateBreedsFromDb(value) {
 
 //REALIZO EL POST PARA PODER CREAR UNA RAZA
 export function createBreed(value) {
-    fetch('http://localhost:3001/dogs',
+    fetch('https://doggys-finder-backend-production.up.railway.app/dogs',
         {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
